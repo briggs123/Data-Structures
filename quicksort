@@ -1,26 +1,44 @@
 #include<stdio.h>
-int quick(a){
-    int pivot,low=0,high,flag==0;
-    pivot=a[0];
-    i=low;
-    j=high-1;
-    while(flag==0){
-        i=i+1;
-        while(a[i]<a[pivot]){
+int quick(int a[20],int low,int high){
+    int pivot,i=low,j=high,temp1,temp2,flag=0;
+    pivot=low;
+    if(low<=high){
+        while(flag==0){
             i=i+1;
+            while(a[i]<a[pivot]){
+               i=i+1; 
+            }
+            while(a[j]>a[pivot]){
+                j=j-1;
+            }
+            if(i<j){
+                temp1=a[i];
+                a[i]=a[j];
+                a[j]=temp1;
+            }
+            else{
+                flag=1;
+            }
         }
-        while(a[j]<a[pivot]){
-            j=j+1;
-        }
-    }
+            temp2=a[pivot];
+            a[pivot]=a[j];
+            a[j]=temp2;
+            quick(a,low,j-1);
+            quick(a,j+1,high);
+
+}
 }
 int main()
 {
-    int a[20],i,n;
-    printf("enter the size of he array");
+    int a[20],n,i;
+    printf("enter the size of the array");
     scanf("%d",&n);
     for(i=0;i<n;i++){
-        scanf("%d",&a[i])
+        scanf("%d",&a[i]);
     }
-    quick(a)
+    quick(a,0,n-1);
+    for(i=0;i<n;i++){
+        printf("%d",a[i]);
+    }
+    return 0;
 }
