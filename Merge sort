@@ -1,0 +1,70 @@
+#include<stdio.h>
+void merge(int a[],int low,int mid,int high);
+void mergsort(int a[],int low,int high)
+{
+    int mid;
+    if(low<high){
+        mid=(low+high)/2;
+        mergsort(a,low,mid);
+        mergsort(a,mid+1,high);
+        merge(a,low,mid,high);
+    }
+}
+void merge(int a[],int low,int mid,int high)
+{
+    int b[50];
+    int i,j,k;
+    i=low;
+    j=mid+1;
+    k=low;
+    while(i<=mid&&j<=high)
+    {
+        if(a[i]<=a[j])
+        {
+            b[k]=a[i];
+            i++;
+            k++;
+        }
+        else
+        {
+            b[k]=a[j];
+            j++;
+            k++;
+        }
+    }
+    if(i>mid)
+    {
+      while(j<=high){
+          b[k]=a[j];
+          j++;
+          k++;
+      }
+    }
+      else if(j>high){
+          while(i<=mid){
+              b[k]=a[i];
+              i++;
+              k++;
+          }
+      }
+      for(k=low;k<=high;k++)
+      {
+          a[k]=b[k];
+      }
+}
+int main()
+{
+    int a[20],i,n;
+    printf("enter the size of the array");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    mergsort(a,0,n-1);
+    for(i=0;i<n;i++)
+    {
+        printf("%d",a[i]);
+    }
+    return 0;
+}
