@@ -1,37 +1,59 @@
 #include<stdio.h>
-int merge_sort(int start,int end){
+int merge(int a[20],int lb,int mid,int ub);
+int mergesort(int a[20],int lb,int ub){
     int mid;
-    if(start<end){
-        mid=(start+end)/2;
-        merge_sort(start,mid);
-        merge_sort(mid+1,end);
-        merging(start,mid,end);
-    
-}
-}
-int merging(int low,int mid,int high){
-    int k=0;
-    while(low<=mid&&high>=mid){
-        if(a[low],a[high]){
-            temp[k]=a[i];
-            k=k+1;
-            low+1;
+    if(lb<ub){
+        mid=(lb+ub)/2;
+        mergesort(a,lb,mid);
+        mergesort(a,mid+1,ub);
+        merge(a,lb,mid,ub);
     }
-       else if(a[high]>a[low]){
-           temp[k]=a[high];
-           k=k+1;
-           high=high+1;
-       }  
+}
+int merge(int a[20],int lb,int mid,int ub){
+    int i=lb;
+    int j=mid+1;
+    int k=lb,b[20];
+    while(i<=mid&&j<=ub){
+        if(a[i]<=a[j]){
+            b[k]=a[i];
+            i++;
+            k++;
+        }
+        else{
+            b[k]=a[j];
+            j++;
+            k++;
+        }
+    }
+    if(i>mid){
+        while(j<=ub){
+            b[k]=a[j];
+            j++;
+            k++;
+        }
+    }
+    else if(j>ub){
+        while(i<=mid){
+            b[k]=a[i];
+            i++;
+            k++;
+        }
+    }
+    for(k=0;k<=ub;k++){
+      printf("%d",b[k]);
+   }
 }
 int main()
 {
-    int a[20],i,n,j;
+    int a[20],n,i;
     printf("enter the size of the array");
     scanf("%d",&n);
-    printf("enter the elements of the array");
     for(i=0;i<n;i++){
         scanf("%d",&a[i]);
     }
-    merge_sort(a,0,n-1);
-    printf("%d",merging)
+    mergesort(a,0,n-1);
+    //for(i=0;i<n;i++){
+        //printf("%d hey",a[i]);
+    //}
+    return 0;
 }
