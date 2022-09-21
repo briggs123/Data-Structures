@@ -1,24 +1,8 @@
-#include<stdio.h>
-int main()
-{
-    int a[10],n,pos,i,f;
-    printf("enter the size of the array");
-    scanf("%d",&n);
-    for(i=0;i<n;i++){
-        scanf("%d",&a[i]);
-    }
-    printf("enter the position you want to insert a number");
-    scanf("%d",&pos);
-    printf("enter the number you want to ensert");
-    scanf("%d",&f);
-    n=n+1;
-    for(i=n-1;i>=pos-1;i--){
-        a[i+1]=a[i];
-    }
-    a[pos-1]=f;
-    for(i=0;i<n;i++){
-        printf("%d",a[i]);
-    }
-    return 0;
-}
-    
+import array as arr 
+a=arr.array("i",eval(input("enter the array")))
+f=int(input("enter the number you want to insert"))
+pos=int(input("enter the position you want to insert the number"))
+for i in range(len(a)-1,pos-1):
+    a[i+1]=a[i]
+a[pos-1]=f 
+print(a)
