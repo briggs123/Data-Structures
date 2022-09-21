@@ -1,24 +1,11 @@
-#include<stdio.h>
-int main()
-{
-    int a[20],n,i,min,temp;
-    printf("enter the size  of the array");
-    scanf("%d",&n);
-    printf("enter the elements of the array");
-    for(i=0;i<n;i++){
-        scanf("%d",&a[i]);
-    }
-    for(min=0;min<n;min++){
-        for(i=min+1;i<n;i++){
-            if(a[min]>a[i]){
-                temp=a[min];
-                a[min]=a[i];
-                a[i]=temp;
-            }
-        }
-    }
-    for(i=0;i<n;i++){
-        printf("%d",a[i]);
-    }
-    return 0;
-}
+import array as arr 
+def section(a):
+    for i in range(0,len(a)-1):
+        for j in range(i+1,len(a)-1):
+            if a[j]<a[i]:
+                temp=a[i]
+                a[i]=a[j]
+                a[j]=temp
+a=arr.array("i",eval(input("enter the array")))
+section(a)
+print(a)
