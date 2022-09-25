@@ -1,70 +1,34 @@
-#include<stdio.h>
-void merge(int a[],int low,int mid,int high);
-void mergsort(int a[],int low,int high)
-{
-    int mid;
-    if(low<high){
-        mid=(low+high)/2;
-        mergsort(a,low,mid);
-        mergsort(a,mid+1,high);
-        merge(a,low,mid,high);
-    }
-}
-void merge(int a[],int low,int mid,int high)
-{
-    int b[50];
-    int i,j,k;
-    i=low;
-    j=mid+1;
-    k=low;
-    while(i<=mid&&j<=high)
-    {
-        if(a[i]<=a[j])
-        {
-            b[k]=a[i];
-            i++;
-            k++;
-        }
-        else
-        {
-            b[k]=a[j];
-            j++;
-            k++;
-        }
-    }
-    if(i>mid)
-    {
-      while(j<=high){
-          b[k]=a[j];
-          j++;
-          k++;
-      }
-    }
-      else if(j>high){
-          while(i<=mid){
-              b[k]=a[i];
-              i++;
-              k++;
-          }
-      }
-      for(k=low;k<=high;k++)
-      {
-          a[k]=b[k];
-      }
-}
-int main()
-{
-    int a[20],i,n;
-    printf("enter the size of the array");
-    scanf("%d",&n);
-    for(i=0;i<n;i++)
-    {
-        scanf("%d",&a[i]);
-    }
-    mergsort(a,0,n-1);
-    for(i=0;i<n;i++)
-    {
-        printf("%d",a[i]);
-    }
-    return 0;
-}
+import array as arr 
+def mergesort(a,low,high):
+    if(low<high):
+        mid=(low+high)//2
+        mergesort(a,low,mid)
+        mergesort(a,mid+1,high)
+        merge(a,low,mid,high)
+def merge(a,low,mid,high):
+    b=arr.array("i",[])
+    i=low
+    j=mid+1
+    k=low
+    while(i<=mid and j<=high):
+        if(a[i]<a[j]):
+            b[k]=a[i]
+            i=i+1 
+            k=k+1 
+        else:
+            b[k]=a[j]
+            j=j+1 
+            k=k+1 
+    if(i>mid):
+        while(j<=mid):
+            b[k]=a[j]
+    elif(j>high):
+        while(i<=mid):
+            b[k]=a[i]
+    for i in range(low,high):
+        a[i]=b[k]
+a=arr.array("i",eval(input("enter the the array")))
+n=len(a)
+mergesort(a,0,n-1)
+for i in  range(n-1):
+    print(a[i])
