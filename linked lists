@@ -88,3 +88,43 @@ int main()
     create(NULL);
     display(start);
 }
+__________________________________________________________________________________________
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    struct node
+    {
+        int data;
+        struct node *link;
+    };
+    struct node *start;
+    start=NULL;
+    struct node *temp,*p;
+    int choice=1;
+    while(choice==1)
+    {
+    temp=(struct node *)malloc(sizeof(struct node));
+    printf("enter the data in linked lists");
+    scanf("%d",&temp->data);
+    temp->link=NULL;
+    if(start==NULL)
+    {
+        start=p=temp;
+    }
+    else
+    {
+        p->link=temp;
+        p=temp;
+    }
+    printf("enter \n 1 to continue \n 0 to print data");
+    scanf("%d",&choice);
+    }
+    printf("printing data\n");
+    p=start;
+    while(p!=NULL)
+    {
+        printf("%d",p->data);
+        p=p->link;
+    }
+}
