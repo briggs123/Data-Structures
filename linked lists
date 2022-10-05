@@ -128,3 +128,119 @@ int main()
         p=p->link;
     }
 }
+------------------------------------------------------------------------------------------------------
+void add_beg();
+void add_end();
+void display();
+#include<stdio.h>
+#include<stdlib.h>
+struct node 
+{
+    int info;
+    struct node *link;
+};
+struct node *start=NULL;
+void create()
+{
+    struct node *temp,*p;
+    int choice=1;
+    while(choice==1)
+    {
+    temp=(struct node *)malloc(sizeof(struct node));
+    if(temp==NULL)
+    {
+        printf("no memory");
+    }
+    else
+    {
+        printf("enter the node values");
+        scanf("%d",&temp->info);
+        temp->link=NULL;
+    }
+    if(start==NULL)
+    {
+        start=p=temp;
+    }
+    else
+    {
+        while(p->link!=NULL)
+        {
+            p=p->link;
+        }
+        p->link=temp;
+    }
+    printf("to continue press 1\nto exit creation press any number");
+    scanf("%d",&choice);
+    }
+}
+void add_beg()
+{
+    struct node *temp,*p;
+    temp=(struct node *)malloc(sizeof(struct node));
+    printf("enter the node to insert at beginning");
+    scanf("%d",&temp->info);
+    temp->link=NULL;
+    if(start=NULL)
+    {
+        start=temp;
+    }
+    else
+    {
+        temp->link=start;
+        start=temp;
+    }
+}
+void add_end()
+{
+    struct node *temp,*p;
+    temp=(struct node *)malloc(sizeof(temp));
+    printf("enter the node");
+    scanf("%d",&temp->info);
+    temp->link=NULL;
+    p=start;
+    while(p->link!=NULL)
+    {
+        p=p->link;
+    }
+    p->link=temp;
+}
+void display()
+{
+    struct node *p;
+    p=start;
+    while(p!=NULL)
+    {
+        printf("%d",p->info);
+        p=p->link;
+    }
+}
+int main()
+{
+    while(1)
+    {
+    int choice;
+    printf("\n1-CREATE");
+    printf("\n2-add at the beginning");
+    printf("\n3-add at the end of the list");
+    printf("\nenter at certain positions");
+    printf("\nenter your choice depending on the functions");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+        case 1: 
+        create();
+        break;
+        case 2:
+        add_beg();
+        break;
+        case 3:
+        add_end();
+        break;
+        case 4:
+        display();
+        break;
+        case 5:
+        exit(0);
+    };
+    }
+}
