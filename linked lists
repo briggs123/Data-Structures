@@ -132,6 +132,8 @@ int main()
 void add_beg();
 void add_end();
 void display();
+void delete_beg();
+void delete_end();
 #include<stdio.h>
 #include<stdlib.h>
 struct node 
@@ -159,10 +161,11 @@ void create()
     }
     if(start==NULL)
     {
-        start=p=temp;
+        start=temp;
     }
     else
     {
+        p=start;
         while(p->link!=NULL)
         {
             p=p->link;
@@ -180,7 +183,7 @@ void add_beg()
     printf("enter the node to insert at beginning");
     scanf("%d",&temp->info);
     temp->link=NULL;
-    if(start=NULL)
+    if(start==NULL)
     {
         start=temp;
     }
@@ -214,6 +217,74 @@ void display()
         p=p->link;
     }
 }
+void count()
+{
+    struct node *p;
+    int count;
+    p=start;
+    while(p!=NULL)
+    {
+        p=p->link;
+        count=count+1;
+    }
+    printf("\nnumber of nodes in the linked list are %d",count);
+}
+void search()
+{
+    struct node *p;
+    int num;
+    printf("enter the number you want to search for");
+    scanf("%d",&num);
+    p=start;
+    while(p!=NULL)
+    {
+        if(p->info==num)
+        {
+            printf("number found %d",p->info);
+            break;
+        }
+    }
+    printf("number not found");
+}
+void delete_beg()
+{
+    if(start==NULL)
+    {
+        printf("there are no nodes");
+    }
+    else
+    {
+    struct node *temp,*p;
+    temp=start;
+    start=start->link;
+    free(temp);
+    }
+}
+void delete_end()
+{
+    struct node *temp,*p;
+    if(start==NULL)
+    {
+        printf("no nodes");
+    }
+    else if(start->link==NULL)
+    {
+        temp=start;
+        start=NULL;
+        free(temp);    
+    }
+    else
+    {
+        p=start;
+        while(p->link!=NULL)
+        {
+            temp=p;
+            p=p->link;
+        }
+        temp->link=NULL;
+        free(p);
+    }
+}
 int main()
 {
     while(1)
@@ -223,6 +294,10 @@ int main()
     printf("\n2-add at the beginning");
     printf("\n3-add at the end of the list");
     printf("\nenter at certain positions");
+    printf("\n4-display");
+    printf("\n5-delete at beginning");
+    printf("\n6-delete at the end");
+    printf("\n7-to stop the process ");
     printf("\nenter your choice depending on the functions");
     scanf("%d",&choice);
     switch(choice)
@@ -240,7 +315,16 @@ int main()
         display();
         break;
         case 5:
+        delete_beg();
+        break;
+        case 6:
+        delete_end();
+        break;
+        case 7:
         exit(0);
+        default:
+        printf("enter correct number");
+        break;
     };
     }
 }
