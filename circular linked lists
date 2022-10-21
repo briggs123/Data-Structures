@@ -6,6 +6,10 @@ struct node
     struct node *link;
 };
 struct node *last=NULL;
+struct node *add_beg(struct node *last,int data);
+struct node *add_end(struct node *last,int data);
+struct node *display(struct node *last);
+struct node *dlt(struct node *last);
 struct node *create(struct node *last)
 {
     struct node *temp;
@@ -26,20 +30,62 @@ struct node *create(struct node *last)
 }
 struct node *add_beg(struct node *last,int data)
 {
-    if(last==NULL)
-    {
     struct node *temp;
     temp=(struct node *)malloc(sizeof(struct node));
     temp->info=data;
+    if(last==NULL)
+    {
     last=temp;
     temp->link=temp;
     }
     else
     {
-        temp->link=last;
+        temp->link=last->link;
         last->link=temp;
-        last=-temp;
     }
     return last;
 }
 struct node *add_end(struct node *last,int data)
+{
+    struct node *temp,*p;
+    temp=(struct node *)malloc(sizeof(struct node));
+    temp->info=data;
+    temp->link=last->link;
+    last->link=temp;
+    last=temp;
+    return last;
+}
+struct node *display(struct node *last)
+{
+    struct node *p;
+    p=last->link;
+    do
+    {
+       printf("%d",p->info); 
+       p=p->link;
+    }while(p!=last->link);
+}
+struct node *dlt(struct node *last)
+{
+    struct node *temp,p;
+    int ele;
+    p=last->link;
+    printf("enter the element u want to dlt");
+    scanf("%d",&ele);
+    if(last->link->info==ele)
+    {
+        temp=last->link;
+        last->link=temp->link;
+        free(temp);
+    }
+    else if(last->info==ele)
+    {
+        
+    }
+}
+int main()
+{
+    last=create(last);
+    display(last);
+    return 0;
+}
