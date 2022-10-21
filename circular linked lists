@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int info;
+    struct node *link;
+};
+struct node *last=NULL;
+struct node *create(struct node *last)
+{
+    struct node *temp;
+    int data,n,i;
+    temp=(struct node *)malloc(sizeof(struct node));
+    printf("enter the data");
+    scanf("%d",&data);
+    last=add_beg(last,data);
+    printf("enter the sizeof the ls");
+    scanf("%d",&n);
+    for(i=1;i<n;i++)
+    {
+        printf("\nenter the node values-");
+        scanf("%d",&data);
+        last=add_end(last,data);
+    }
+    return last;
+}
+struct node *add_beg(struct node *last,int data)
+{
+    if(last==NULL)
+    {
+    struct node *temp;
+    temp=(struct node *)malloc(sizeof(struct node));
+    temp->info=data;
+    last=temp;
+    temp->link=temp;
+    }
+    else
+    {
+        temp->link=last;
+        last->link=temp;
+        last=-temp;
+    }
+    return last;
+}
+struct node *add_end(struct node *last,int data)
