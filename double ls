@@ -7,10 +7,7 @@ struct node
     int info;
     struct node *next;
 };
-struct node *addafter(struct node *start,int data,int item);
-struct node *addbefore(struct node *start,int data ,int item);
-struct node *del(struct node *start,int data);
-struct node *reverse(struct node *start);
+
 struct node *addatbeg(struct node *start,int data);
 struct node *addatend(struct node *start,int data);
 struct node *addtoempty(struct node *start,int data);
@@ -35,18 +32,19 @@ struct node *create_list(struct node *start)
 }
 struct node *display(struct node *start)
 {
+    printf("h");
     struct node *p;
     if(start==NULL)
     {
         printf("List is empty\n");
         return start;
     }
-    p =start;
+    p=start;
     printf("List is :\n");
     while(p!=NULL)
     {
         printf("%d",p->info);
-        p = p->next;
+        p=p->next;
     }
 }
 struct node *addtoempty(struct node *start,int data)
@@ -77,8 +75,10 @@ struct node *addatend(struct node *start,int data)
     temp->info = data;
     p = start;
     while(p->next!=NULL)
-    p = p->next;
-    p->next = temp;
+    {
+      p= p->next;
+    }
+    p->next =temp;
     temp->next = NULL;
     temp->prev = p;
     return start;
@@ -94,11 +94,7 @@ int main()
             printf("3.Add to empty list\n");
             printf("4.Add at beginning\n");
             printf("5.Add at end\n");
-            printf("6.Add after\n");
-            printf("7.Add before\n");
-            printf("8.Delete\n");
-            printf("9.Reverse\n");
-            printf("10.Quit\n");
+            printf("6.Quit\n");
             printf("Enter your choice :");
             scanf("%d",&choice);
 
@@ -125,29 +121,8 @@ int main()
                  scanf("%d",&data);
                  start=addatend(start,data);
                  break;    
-           case 6:
-                 printf("Enter the element to be instered :");
-                 scanf("%d",&data);
-                 printf("Enter the element after which to instered :");
-                 scanf("%d",&item);
-                 start=addafter(start,data,item);
-                 break;
-           case 7:
-                 printf("Enter the element to be instered :");
-                 scanf("%d",&data);
-                 printf("Enter the element before which to instered :");
-                 scanf("%d",&item);
-                 start=addbefore(start,data,item);
-                 break;
-           case 8:
-                 printf("Enter the element to be deleted :");
-                 scanf("%d",&data);
-                 start=del(start,data);
-                 break;
-           case 9:
-                 start=reverse(start);
-                 break;
-          case 10:
+          
+          case 6:
                  exit(0);
           default:
                  printf("wrong choice\n");    
